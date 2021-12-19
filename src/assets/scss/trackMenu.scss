@@ -1,0 +1,13 @@
+.menu-container {
+  background-color: $bg-color-light;
+  color: $white;
+  display: flex;
+  flex-wrap: wrap;
+  .radio-container {
+    min-width: 7rem;
+    padding: .8rem;
+  }
+  .track-name {
+    font-weight: bold;
+  }
+}

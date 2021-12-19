@@ -1,0 +1,39 @@
+.settings-container, .ps-container {
+  position: absolute;
+  width: 250px;
+}
+
+.ps-menu {
+  .ps-title {
+    text-align: center;
+    font-size: 17pt;
+    margin-bottom: .4rem;
+    font-weight: bold;
+  }
+  padding: .5rem;
+}
+
+#setting-menu, .ps-menu {
+  background-color: $grey;
+  color: $white;
+  display: none;
+  z-index: 100;
+}
+
+.ps-menu {
+  .list-item {
+    pointer-events: none;
+  }
+}
+
+.list-item {
+  display: flex;
+  padding: .6rem .8rem;
+  .left {
+    margin-left: auto;
+  }
+}
+
+.foreign-object {
+  pointer-events: none;
+}

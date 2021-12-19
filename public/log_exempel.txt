@@ -1,0 +1,190 @@
+;+ Exempel på logg-rader
+;+ En anläggning identifieras av fältet som börjar med ";I"
+;+ När bilden ska byggas upp används endast logg-rader med matchande ;I-fält
+;+ Rader som börjar med ";+" är kommentarer eller debug-meddelanden och ska normalt ignoreras av parsern för en anläggning
+;+ Rader som börjar med ";Lx" där x är en siffra 0-9 innehåller infomation om aktuell status,
+;+ och de raderna används för att bygga upp bilden
+;+ För punktsignal börjar vi med ;L0 som bl.a innehåller aktuella in/ut-bitar för alla Moxa-enheterna
+;+ För Wiselgrensplatsen finns 5 st Moxa-enheter. Alla är konfigurerade för 12 ingångar och 4 utgångar
+;+ Det blir 16 bitar per Moxa, sammanlagt 80 bitar. Dessa hex-kodas i ett fält som börjar med ";b"
+;+ Observera att fältet kommer förlängas i slutet med status-bitar som inte representerar någom I/O på en Moxa.
+;+ Connect-meddelande från en anläggning:
+;C;T2021-11-03 01:28:31.267;Ips_wieselgrenspl;Yps_wieselgrenspl;NPunktsignalanl Wieselgrensplatsen;fserver_interface eth0,;R0;M00:d0:69:49:19:b9;i192.168.1.204;v2021-10-31 12:19:15;B2021-11-03 01:28:30;c2;S2021-11-03 01:05:05
+;+
+;+ Alla bitar inaktiva på alla Moxa:
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000000000000;c2;S2021-11-03 01:05:05
+;+
+;+ Moxa A, enhet 581 (WG21), vet inte riktigt vad beteckningarna står för i Tonys dokument
+;+ Bit 0 = ingång "581Tm":
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00010000000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 1 = ingång "581To"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00020000000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 2 = ingång "581F"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00040000000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 3 = ingång "581Gr"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00080000000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 4 = ingång "581Spc"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00100000000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 5 = ingång "23S" står även (211S)
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00200000000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 6 = ingång "581Tr"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00400000000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 7 = ingång "581Ter"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00800000000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 8 = ingång "25S" står även (244S)
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b01000000000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 9 = ingång "27S" står även (242S)
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b02000000000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 10 = ingång oanvänd
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b04000000000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 11 = ingång oanvänd
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b08000000000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 12 = utgång "TL581A"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b10000000000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 13 = utgång "Tl581Å"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b20000000000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 14 = utgång "581Spc/B"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b40000000000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 15 = utgång "581Spc/F"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b80000000000000000000;c2;S2021-11-03 01:05:05
+;+ Slut Moxa A
+;+
+;+ Moxa B, enhet 582 (WG24), vet inte riktigt vad beteckningarna står för i Tonys dokument
+;+ Bit 0 = ingång "582Tm":
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000001000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 1 = ingång "582To"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000002000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 2 = ingång "582F"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000004000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 3 = ingång "582Gr"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000008000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 4 = ingång "582Spc"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000010000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 5 = ingång "19S" står även (215S)
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000020000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 6 = ingång "582Tr"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000040000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 7 = ingång "582Ter"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000080000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 8 = ingång "15S" står även (219S)
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000100000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 9 = ingång "17S" står även (217S)
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000200000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 10 = ingång "21S" står även (213S)
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000400000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 11 = ingång oanvänd
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000800000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 12 = utgång "TL582A"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00001000000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 13 = utgång "Tl582Å"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00002000000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 14 = utgång "582Spc/B"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00004000000000000000;c2;S2021-11-03 01:05:05
+;+ Bit 15 = utgång "582Spc/F"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00008000000000000000;c2;S2021-11-03 01:05:05
+;+ Slut Moxa B
+;+
+;+ Moxa C, enhet 583 (WG11), vet inte riktigt vad beteckningarna står för i Tonys dokument
+;+ Bit 0 = ingång "583Tm":
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000100000000;c2;S2021-11-03 01:05:05
+;+ Bit 1 = ingång "583To"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000200000000;c2;S2021-11-03 01:05:05
+;+ Bit 2 = ingång "583F"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000400000000;c2;S2021-11-03 01:05:05
+;+ Bit 3 = ingång "583Gr"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000800000000;c2;S2021-11-03 01:05:05
+;+ Bit 4 = ingång "583Spc"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000001000000000;c2;S2021-11-03 01:05:05
+;+ Bit 5 = ingång "11S" står även (111S)
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000002000000000;c2;S2021-11-03 01:05:05
+;+ Bit 6 = ingång "583Tr"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000004000000000;c2;S2021-11-03 01:05:05
+;+ Bit 7 = ingång "583Ter"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000008000000000;c2;S2021-11-03 01:05:05
+;+ Bit 8 = ingång "13S" står även (113S)
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000010000000000;c2;S2021-11-03 01:05:05
+;+ Bit 9 = ingång oanvänd
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000020000000000;c2;S2021-11-03 01:05:05
+;+ Bit 10 = ingång oanvänd
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000040000000000;c2;S2021-11-03 01:05:05
+;+ Bit 11 = ingång oanvänd
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000080000000000;c2;S2021-11-03 01:05:05
+;+ Bit 12 = utgång "TL583A"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000100000000000;c2;S2021-11-03 01:05:05
+;+ Bit 13 = utgång "Tl583Å"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000200000000000;c2;S2021-11-03 01:05:05
+;+ Bit 14 = utgång "583Spc/B"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000400000000000;c2;S2021-11-03 01:05:05
+;+ Bit 15 = utgång "583Spc/F"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000800000000000;c2;S2021-11-03 01:05:05
+;+ Slut Moxa C
+;+
+;+ Moxa D, enhet 584 (WG14), vet inte riktigt vad beteckningarna står för i Tonys dokument
+;+ Bit 0 = ingång "584Tm":
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000000010000;c2;S2021-11-03 01:05:05
+;+ Bit 1 = ingång "584To"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000000020000;c2;S2021-11-03 01:05:05
+;+ Bit 2 = ingång "584F"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000000040000;c2;S2021-11-03 01:05:05
+;+ Bit 3 = ingång "584Gr"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000000080000;c2;S2021-11-03 01:05:05
+;+ Bit 4 = ingång "584Spc"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000000100000;c2;S2021-11-03 01:05:05
+;+ Bit 5 = ingång "12S" står även (144S)
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000000200000;c2;S2021-11-03 01:05:05
+;+ Bit 6 = ingång "584Tr"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000000400000;c2;S2021-11-03 01:05:05
+;+ Bit 7 = ingång "584Ter"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000000800000;c2;S2021-11-03 01:05:05
+;+ Bit 8 = ingång "10S" står även (142S)
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000001000000;c2;S2021-11-03 01:05:05
+;+ Bit 9 = ingång oanvänd
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000002000000;c2;S2021-11-03 01:05:05
+;+ Bit 10 = ingång oanvänd
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000004000000;c2;S2021-11-03 01:05:05
+;+ Bit 11 = ingång oanvänd
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000008000000;c2;S2021-11-03 01:05:05
+;+ Bit 12 = utgång "TL584A"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000010000000;c2;S2021-11-03 01:05:05
+;+ Bit 13 = utgång "Tl584Å"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000020000000;c2;S2021-11-03 01:05:05
+;+ Bit 14 = utgång "584Spc/B"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000040000000;c2;S2021-11-03 01:05:05
+;+ Bit 15 = utgång "584Spc/F"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000080000000;c2;S2021-11-03 01:05:05
+;+ Slut Moxa D
+;+
+;+ Moxa E, enhet 586 (WG16), vet inte riktigt vad beteckningarna står för i Tonys dokument
+;+ Bit 0 = ingång oanvänd
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000000000001;c2;S2021-11-03 01:05:05
+;+ Bit 1 = ingång oanvänd
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000000000002;c2;S2021-11-03 01:05:05
+;+ Bit 2 = ingång "586F"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000000000004;c2;S2021-11-03 01:05:05
+;+ Bit 3 = ingång "586Gr"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000000000008;c2;S2021-11-03 01:05:05
+;+ Bit 4 = ingång "586Spc"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000000000010;c2;S2021-11-03 01:05:05
+;+ Bit 5 = ingång "14S" står även (146S)
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000000000020;c2;S2021-11-03 01:05:05
+;+ Bit 6 = ingång oanvänd
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000000000040;c2;S2021-11-03 01:05:05
+;+ Bit 7 = ingång oanvänd
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000000000080;c2;S2021-11-03 01:05:05
+;+ Bit 8 = ingång oanvänd
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000000000100;c2;S2021-11-03 01:05:05
+;+ Bit 9 = ingång oanvänd
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000000000200;c2;S2021-11-03 01:05:05
+;+ Bit 10 = ingång oanvänd
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000000000400;c2;S2021-11-03 01:05:05
+;+ Bit 11 = ingång oanvänd
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000000000800;c2;S2021-11-03 01:05:05
+;+ Bit 12 = utgång "Ringverk"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000000001000;c2;S2021-11-03 01:05:05
+;+ Bit 13 = utgång oanvänd
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000000002000;c2;S2021-11-03 01:05:05
+;+ Bit 14 = utgång "586Spc/B"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000000004000;c2;S2021-11-03 01:05:05
+;+ Bit 15 = utgång "586Spc/F"
+;L0;Ips_wieselgrenspl;m0;T2021-11-03 01:28:30.527;b00000000000000008000;c2;S2021-11-03 01:05:05
+;+ Slut Moxa E

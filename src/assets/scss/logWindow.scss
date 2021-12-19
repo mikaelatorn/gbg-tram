@@ -1,0 +1,21 @@
+.log-window {
+  fill: $white;
+}
+
+.log-text {
+  stroke: $bg-color;
+  font-weight: bold;
+  line-height: 1.4;
+  white-space: pre-wrap;
+}
+
+.log-content {
+  display: flex;
+  .time {
+    margin-left: auto;
+  }
+}
+
+#log-info-text {
+  resize: none;
+}
